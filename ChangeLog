@@ -1,0 +1,76 @@
+djw Sat Sep 15 15:17:34 PDT 2001 Version 1.0
+* Initial release
+
+djw Sat Sep 15 16:17:34 PDT 2001 Version 1.1
+* added the -align option so you can decide how menu
+  entries get aligned (left, right or center)
+
+djw Sat Sep 15 17:17:34 PDT 2001 Version 1.2
+* swapped the sense of the "j" and "k" keystrokes to
+  be more natural
+* added "q" keystroke to exit for Gergely
+* added Space as keystroke same as Return
+
+djw Sun Sep 16 10:22:45 PDT 2001 Version 1.2
+* updated the debian directory to reflect the
+  change from 9menu to ratmenu
+
+djw Tue Sep 18 11:29:32 PDT 2001 Version 1.3
+* made menu behavior configurable with -style option
+* added UpArrow/DownArrow and u/d keystroke support
+* added Tab and Backspace keystrokes
+* changed functionality of Space keystroke to go to
+  next item instead of selecting item
+* made RightArrow have same functionality as Enter
+
+djw Mon Sep 24 10:52:42 PDT 2001 Version 1.4
+* added the -fg, -bg, and -font options back in
+* cleaned up the event handling loop to remove
+  the rodent detritus
+* fixed the man page; support for a special "exit"
+  menu item was removed ages ago and now the manpage
+  reflects that
+* added an install target to the makefile
+
+djw Wed Oct 10 12:57:39 PDT 2001 Version 1.5
+* updated manpage to document keystrokes
+* took out 'd' and 'u' keystrokes, added '+' and '-'
+* changed syntax so menu items can include the ':' character
+
+djw Thu Oct 11 11:56:17 PDT 2001 Version 1.6
+* fixed a non-bug; now uses "ratmenu" resource
+  class instead of "9menu".
+
+djw Sat Dec 15 12:45:47 PST 2001 Version 1.7
+* minor code cleanup; got rid of extraneous call
+  to XGetGeometry() and unneeded assignment statements
+* fixed the version string
+
+djw Sun Jun  2 11:19:23 PDT 2002 1.8
+* fixed typo in usage()
+* fixed ChangeLog entry for version 1.7
+* added the -back option for full traversal of menu hierarchies
+
+djw Sun Jun  2 13:46:35 PDT 2002 1.9
+* updated the manpage
+
+djw Sun Jun  2 14:16:03 PDT 2002 1.9.1
+* updated the manpage again to be clearer
+* fixed quoting of the ' character in the manpage
+
+djw Sun Jun  8 16:53:43 PDT 2003 2.0
+* added the -persist option
+
+djw Sun Jun  8 23:45:51 PDT 2003 2.1
+* moved README.9menu into the LICENSE file
+
+djw Sun Feb 13 10:56:24 PST 2005 2.3.2
+* removed unneeded fork() from spawn function
+* added fallback to default /bin/sh if user specified
+  shell didn't work.
+
+djw Wed Mar 30 23:41:25 PST 2005 2.3.4
+* fixed uninitialized variable
+
+djw Wed Mar 30 23:41:25 PST 2005 2.3.5
+* fixed an improperly initialized variable

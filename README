@@ -1,0 +1,18 @@
+Sun Jun  8 23:43:42 PDT 2003
+
+You can access the Debian menu hierarchy by running
+
+    /etc/X11/ratmenu/debian.menu
+
+Alternatively, you can
+
+    cp /etc/menu-methods/ratmenu $HOME/.menu-methods/
+
+And then run
+
+    update-menus
+
+This will create the dir $HOME/.ratmenu/ with the ratmenu scripts,
+with $HOME/.ratmenu/debian.menu as the root menu.
+
+Thanks to Fabricio Matheus Goncalves for this capability in ratmenu.

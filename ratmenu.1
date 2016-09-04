@@ -1,0 +1,214 @@
+.TH RATMENU 1 "Oct 10 2001" "Ratpoison Desktop For X"
+.SH NAME
+ratmenu \- create a menu to run commands
+.SH SYNOPSIS
+.B ratmenu
+[
+.BI \-display " displayname"
+] [
+.BI \-font " fname"
+] [
+.BI \-fg " foreground-color"
+] [
+.BI \-bg " background-color"
+] [
+.BI \-io " item-offset"
+] [
+.BI \-label " name"
+] [
+.BI \-shell " prog"
+] [
+.BI \-align " {left|center|right}"
+] [
+.BI \-style " {snazzy|dreary}"
+] [
+.BI \-persist
+] [
+.B \-version
+] [
+.IR menuitem\ command
+]
+\&...
+.SH DESCRIPTION
+.I ratmenu
+is a simple program that accepts a list of menu item and command
+pairs on the command line.
+It creates a window that consists of nothing but a menu.
+When a particular item is selected, the corresponding command is executed.
+.PP
+.I ratmenu
+does not recognize any usage of the rodent.  It is entirely
+keystroke operated.
+.PP
+Menu items must be followed by a command.  The syntax is based on
+that of the
+.I dialog
+program.
+.PP
+.I ratmenu
+accepts the following command line options.
+.RS
+.TP
+.BI \-display " displayname"
+Use the X display
+.IR displayname ,
+instead of the default display.
+.TP
+.BI \-font " fname"
+(X Resource: font)
+Use the font
+.IR fname ,
+instead of the default font.
+.TP
+.BI \-label " name"
+Change both the window and icon labels of the window to
+.IR name .
+The default label is the last component of the path used to run
+.IR ratmenu ,
+typically,
+.BR ratmenu .
+.TP
+.BI \-fg " foreground-color" 
+(X Resource: fgcolor)
+Set the foreground color to
+.IR foreground-color .
+By default, the foreground color is black.
+.TP
+.BI \-bg " background-color" 
+(X Resource: bgcolor)
+Set the background color to
+.IR background-color .
+By default, the background color is white.
+.TP
+.BI \-io " item-offset"
+Set the first selected item to
+.IR item-offset .
+By default, the first item is the top-most one, or item-offset 1.  The next
+item down would be at item-offset 2.
+.TP
+.BI \-style " {snazzy|dreary}" 
+(X Resource: style)
+The default style is
+.IR snazzy ,
+where the highlight bar, which shows the currently selected item, remains
+stationary while all the menu items are rotated up or down when the cursor
+keys are moved.  In
+.IR dreary
+mode, the highlight bar moves up and down the menu as it does on all conventional
+keyboard controlled menus.
+.TP
+.BI \-align " {left|center|right}" 
+(X Resource: align)
+Align the text of the menu entries to the left, right, or center.
+Defaults to
+.IR left .
+This is different from
+.BR 9menu ,
+which defaults to
+.IR center .
+.TP
+.BI \-shell " prog"
+Use
+.I prog
+as the shell to run commands, instead of
+.BR /bin/sh .
+A popular alternative shell is
+.IR rc (1).
+If the shell cannot be executed,
+.I ratmenu
+will
+.I silently
+fall back to using
+.BR /bin/sh .
+.TP
+.BI \-back " prevmenu"
+.I prevmenu
+is a command or shell script to run when the back key is pressed, usually a
+script that has ratmenu showing the previous menu.  Used to create nested
+menus, it gives the user a way to back out and return to the previous menu.
+Note that you can use this option for other things too.  The command specified
+by the
+.B -back
+option is executed when the user hits one of the "back" keys.
+.TP
+.BI \-persist 
+(X Resource: persist)
+Ordinarily, ratmenu exits if a new window pops up on top of it, or if you
+switch to another window.  This option tells ratmenu to hang around, like a
+regular window.
+.TP
+.B \-version
+This option prints the version of
+.I ratmenu
+on the standard output, and then exits with an exit value of zero.
+.RE
+.SH KEYSTROKES
+.PP
+The
+.BI Up
+keystrokes move the selection to the next item up.  The
+.BI Down
+keystrokes move the selection to the next item down.  When
+the selection reaches the top or bottom, it scrolls around
+to the other side on pressing of the appropriate keystroke. The
+.BI Select
+keystrokes execute the command corresponding to the currently
+selected menu item, and exit ratmenu.  The
+.BI Exit
+keystrokes quit ratmenu without doing anything.
+.RS
+.TP
+.BI Up
+ 'k', Up_arrow, BackSpace, '\-', C\-p
+.TP
+.BI Down
+ 'j', Down_arrow, Space, Tab, '+', C\-n, C\-i
+.TP
+.BI Select
+ 'l', Right_arrow, Return, C\-f, C\-m, C\-j
+.TP
+.BI Back
+ 'h', Left_arrow, C\-b
+.TP
+.BI Exit
+ 'q', Escape, C\-g
+.RE
+.SH CONFIGURATION USING X RESOURCES
+.PP
+You can configure some items using
+.I xrdb
+to load appropriate X resources.  There is an example configuration
+in the file
+.I /usr/share/doc/ratmenu/Xresources.ratmenu
+which shows all possible configuration items.  Give it a look; it is
+fairly easy to figure out.
+.RE
+.SH EXAMPLES
+.ft B
+.nf
+ratmenu \-label "Remotes xterm" acme "rsh acme xterm" herman "rsh herman 9term" &
+.sp
+ratmenu \-label 'X progs' ghostview ghostview xdvi xdvi xeyes xeyes xneko xneko &
+.sp
+ratmenu \-back ~/bin/mypreviousmenu "X Eyes" xeyes &
+.ft
+.fi
+.SH SEE ALSO
+.IR ratpoison (1),
+.IR ratpoisonrc (5),
+.IR dialog (1)
+.IR xrdb (1)
+.PP
+.IR "Ratpoison Desktop Users Manual" .
+.SH AUTHORS
+The initial idea for this program was by Arnold Robbins, after having
+worked with John Mackin's GWM Blit emulation.
+Matty Farrow wrote a version using libXg, from which some ideas were borrowed.
+This code was written by David Hogan and Arnold Robbins.
+Rich Salz motivated the
+.B \-shell
+option.
+Jonathan Walther modified this code to play nicely with the ratpoison window
+manager by removing handling of mouse events and iconification. Zrajm C Akfohg
+made many improvements in his ratmen fork, including X resource handling, some
+of which were folded back in.

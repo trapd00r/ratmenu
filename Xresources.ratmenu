@@ -1,0 +1,12 @@
+! Look in /etc/X11/rgb.txt for supported color names
+ratmenu*fgcolor:  yellow
+ratmenu*bgcolor:  blue
+! Look in /etc/X11/fonts/*/*.alias for possible fonts */
+ratmenu*font:     -dosemu-vga-medium-r-normal--20-200-75-75-c-100-ibm-cp866
+!ratmenu*font:     vga
+! Possible values: snazzy, dreary
+ratmenu*style:    dreary
+! Possible values: true, false
+ratmenu*persist:  false
+! Possible values: left, center, right
+ratmenu*align:    right
